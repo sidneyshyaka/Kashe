@@ -2,6 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { supabase } from "@/lib/supabase";
+import Dashboard from "@/components/Dashboard";
 
 type Profile = {
   full_name: string | null;
@@ -60,17 +61,12 @@ export default function Home() {
 
   if (profile) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center gap-3 p-8">
-        <h1 className="text-3xl font-bold">Welcome, {profile.full_name}</h1>
-        <p className="text-gray-600">Shop: {profile.shops?.name}</p>
-        <p className="text-gray-600">Role: {profile.role}</p>
-        <button
-          onClick={handleLogout}
-          className="mt-4 rounded bg-gray-900 px-4 py-2 text-white"
-        >
-          Log out
-        </button>
-      </main>
+      <Dashboard
+        fullName={profile.full_name}
+        role={profile.role}
+        shopName={profile.shops?.name ?? null}
+        onLogout={handleLogout}
+      />
     );
   }
 
