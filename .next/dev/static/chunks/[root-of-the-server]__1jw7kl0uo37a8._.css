@@ -139,6 +139,7 @@
 @layer properties {
   @supports (((-webkit-hyphens: none)) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
     *, :before, :after, ::backdrop {
+      --tw-border-style: solid;
       --tw-font-weight: initial;
     }
   }
@@ -146,8 +147,14 @@
 
 @layer theme {
   :root, :host {
+    --color-red-600: #e40014;
     --color-gray-600: #4a5565;
+    --color-gray-900: #101828;
+    --color-white: #fff;
     --spacing: .25rem;
+    --container-sm: 24rem;
+    --text-3xl: 1.875rem;
+    --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --font-weight-bold: 700;
@@ -157,7 +164,9 @@
 
   @supports (color: lab(0% 0 0)) {
     :root, :host {
+      --color-red-600: lab(48.4493% 77.4328 61.5452);
       --color-gray-600: lab(35.6337% -1.58697 -10.8425);
+      --color-gray-900: lab(8.11897% .811279 -12.254);
     }
   }
 }
@@ -419,12 +428,20 @@
     margin-top: calc(var(--spacing) * 4);
   }
 
+  .mt-6 {
+    margin-top: calc(var(--spacing) * 6);
+  }
+
   .block {
     display: block;
   }
 
   .flex {
     display: flex;
+  }
+
+  .table {
+    display: table;
   }
 
   .h-full {
@@ -439,6 +456,14 @@
     min-height: 100vh;
   }
 
+  .w-full {
+    width: 100%;
+  }
+
+  .max-w-sm {
+    max-width: var(--container-sm);
+  }
+
   .flex-col {
     flex-direction: column;
   }
@@ -451,8 +476,42 @@
     justify-content: center;
   }
 
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
+
+  .rounded {
+    border-radius: .25rem;
+  }
+
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+
+  .bg-gray-900 {
+    background-color: var(--color-gray-900);
+  }
+
   .p-8 {
     padding: calc(var(--spacing) * 8);
+  }
+
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+  }
+
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+
+  .text-3xl {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
   }
 
   .text-4xl {
@@ -467,6 +526,14 @@
 
   .text-gray-600 {
     color: var(--color-gray-600);
+  }
+
+  .text-red-600 {
+    color: var(--color-red-600);
+  }
+
+  .text-white {
+    color: var(--color-white);
   }
 
   .antialiased {
@@ -491,6 +558,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
 }
 
 @property --tw-font-weight {
